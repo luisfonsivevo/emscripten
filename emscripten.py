@@ -1754,7 +1754,7 @@ asm["%(name)s"] = function() {%(runtime_assertions)s
         else:
           receiving += '\n'.join(['var ' + s + ' = Module["' + s + '"] = asm["' + s + '"];' for s in module_exports]) + '\n'
     else:
-      receiving += '_emscripten_export_asm_functions(asm);'
+      receiving += 'exportAsmFunctions(asm);'
   else:
     receiving += 'Module["asm"] = asm;\n'
     wrappers = []
@@ -2647,7 +2647,7 @@ asm["%(e)s"] = function() {%(assertions)s
         else:
           receiving += ['var ' + asmjs_mangle(s) + ' = Module["' + asmjs_mangle(s) + '"] = asm["' + s + '"];' for s in exports]
     else:
-      receiving.append('_emscripten_export_asm_functions(asm);')
+      receiving.append('exportAsmFunctions(asm);')
   else:
     receiving.append('Module["asm"] = asm;')
     for e in exports:
