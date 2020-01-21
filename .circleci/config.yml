@@ -43,6 +43,11 @@ commands:
             # them all from source here, to check whether new changes work.
             rm -Rf ~/.emscripten_cache
       - run:
+          name: npm install
+          command: |
+            env
+            npm install
+      - run:
           name: embuilder build ALL
           command: |
             python3 ./embuilder.py build ALL
@@ -250,13 +255,6 @@ commands:
           command: |
             wget -O ~/chrome.deb https://dl.google.com/linux/direct/google-chrome-beta_current_amd64.deb
             dpkg -i ~/chrome.deb
-      - run:
-          name: install sockets test suite prerequisites
-          command: |
-            wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
-            tar -xf node-v12.13.0-linux-x64.tar.xz
-            export PATH="`pwd`/node-v12.13.0-linux-x64/bin:${PATH}"
-            npm install ws
       - run:
           name: run sockets tests
           environment:
