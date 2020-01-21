@@ -45,7 +45,8 @@ commands:
       - run:
           name: npm install
           command: |
-            env
+            # Will add emsdk version of node to PATH
+            source ~/emsdk-master/emsdk_env.sh
             npm install
       - run:
           name: embuilder build ALL
